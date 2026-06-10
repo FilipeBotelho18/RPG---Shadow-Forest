@@ -2853,3 +2853,206 @@ body.intro-active .game-shell {
 
 .fb-detail--damage { color: #f07070; text-shadow: 0 0 16px rgba(240, 80, 80, 0.6);  }
 .fb-detail--heal   { color: #6bcf6b; text-shadow: 0 0 16px rgba(80, 200, 80, 0.55); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   RESPONSIVIDADE — suporte a 14" HD (1366×768) e HD+ (1280×800)
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1400px — Large HD ───────────────────────────────────────── */
+@media (max-width: 1400px) {
+  /* HUD: reduz identity min-width */
+  .hud-identity  { min-width: 220px; }
+  .hud-stage-wrap { min-width: 150px; max-width: 200px; }
+
+  /* Classe grid com min menor */
+  .game-shell.is-creating .class-grid {
+    grid-template-columns: repeat(3, minmax(220px, 340px));
+  }
+
+  /* Status grid mais compacto */
+  .status-grid {
+    grid-template-columns: minmax(280px, 1.5fr) repeat(5, minmax(120px, 1fr));
+    max-width: 1360px;
+  }
+
+  /* Battlefield: altura do SVG menor */
+  .battlefield svg { max-height: 340px; }
+}
+
+/* ── 1280px — HD+ / 14" FHD ─────────────────────────────────── */
+@media (max-width: 1280px) {
+
+  /* ── Tipografia base ── */
+  :root { font-size: 14px; }
+
+  /* ── Telas de intro / welcome ── */
+  .intro-content { max-width: 680px; padding: 32px; }
+  .welcome-content { padding: 36px 24px; max-width: 680px; }
+  .welcome-lore  { font-size: 16px; }
+
+  /* ── HUD ── */
+  .player-hud { min-height: 60px; }
+  .hud-identity { min-width: 200px; padding: 8px 12px; gap: 10px; }
+  .hud-portrait { width: 40px; height: 40px; }
+  .hud-name     { font-size: 13px; }
+  .hud-hp-text, .hud-level, .hud-xp { font-size: 11px; }
+  .hud-stat-chip { min-width: 90px; padding: 8px 12px; }
+  .hud-stat-icon { font-size: 15px; }
+  .hud-stat-val  { font-size: 15px; }
+  .hud-stat-label { font-size: 9px; }
+  .hud-stage-wrap { min-width: 130px; max-width: 170px; padding: 8px 12px; }
+  .hud-stage-text { font-size: 12px; }
+  .hud-actions    { padding: 6px 10px; gap: 5px; }
+  .ghost-button   { min-height: 38px; padding: 8px 12px; font-size: 12px; }
+
+  /* ── Classe grid: 3 colunas menores ── */
+  .class-grid,
+  .game-shell.is-creating .class-grid {
+    grid-template-columns: repeat(3, minmax(180px, 300px));
+    gap: 14px;
+  }
+  .class-card       { min-height: 300px; padding: 10px; }
+  .class-card img   { height: 160px; }
+  .class-card strong { font-size: 17px; }
+
+  /* ── Status grid ── */
+  .status-grid {
+    grid-template-columns: minmax(240px, 1.3fr) repeat(5, minmax(100px, 1fr));
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  /* ── Battlefield SVG ── */
+  .battlefield { min-height: 260px; }
+  .battlefield svg { max-height: 300px; }
+
+  /* ── Combatant sprites ── */
+  .combatant.player-combatant { left: 5%; }
+  .combatant.enemy-combatant  { right: 5%; }
+
+  /* ── Action groups ── */
+  .combat-actions { gap: 8px; }
+  .action-group   { }
+  .group-label    { padding: 6px 10px 5px; font-size: 9px; }
+  .group-buttons  { gap: 5px; padding: 8px; }
+  .combat-actions button { padding: 7px 10px; font-size: 11px; }
+
+  /* ── Combat log ── */
+  .combat-log     { max-height: 130px; }
+  .combat-log-header { padding: 6px 10px; font-size: 9px; }
+  .combat-log-list   { padding: 6px 8px; gap: 3px; }
+  .combat-log-entry  { font-size: 10.5px; }
+
+  /* ── Feedback ── */
+  .fb-result   { font-size: 16px; }
+  .fb-detail   { font-size: 18px; }
+  .fb-attacker { font-size: 11px; }
+  .fb-action-label { font-size: 10px; }
+
+  /* ── Modal ── */
+  .modal-box { max-width: 540px; padding: 28px 24px; }
+  .modal-class-img { max-height: 180px; }
+
+  /* ── Event / shop ── */
+  .event-description { font-size: 15px; }
+  .panel-heading h2  { font-size: 22px; }
+
+  /* ── Pre-combat HUD ── */
+  .mission-banner    { padding: 14px 18px; }
+  .mission-title     { font-size: 18px; }
+
+  /* ── Victory popup ── */
+  .victory-card  { padding: 36px 32px 32px; }
+  .victory-title { font-size: 24px; }
+  .victory-btn   { padding: 12px 28px; font-size: 14px; }
+}
+
+/* ── 1024px — HD ready / 14" HD 768p ────────────────────────── */
+@media (max-width: 1024px) {
+
+  /* ── Intro / Welcome ── */
+  .intro-content h1, .welcome-content h1 {
+    font-size: clamp(32px, 5vw, 54px);
+  }
+  .welcome-lore  { font-size: 14px; line-height: 1.7; }
+  #choose-hero-button, #start-adventure {
+    padding: 14px 36px;
+    font-size: 15px;
+  }
+
+  /* ── HUD compacto ── */
+  .player-hud { flex-wrap: wrap; min-height: auto; }
+  .hud-identity  { min-width: 180px; }
+  .hud-stats     { flex-wrap: wrap; }
+  .hud-stat-chip { min-width: 80px; }
+  .hud-stage-wrap { display: none; }  /* omite etapa em telas pequenas */
+
+  /* ── Layout principal ─── reduz padding lateral ── */
+  .game-shell { padding: 0 8px; }
+
+  /* ── Classe grid: 2 colunas em 1024 ── */
+  .class-grid,
+  .game-shell.is-creating .class-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .game-shell.is-creating .class-card { min-height: 340px; }
+  .game-shell.is-creating .class-card img { height: 200px; }
+
+  /* ── Status grid em coluna ── */
+  .status-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* ── Battlefield: altura menor ── */
+  .battlefield { min-height: 220px; }
+  .battlefield svg { max-height: 260px; }
+
+  /* ── Sprite dos combatentes menor ── */
+  .sprite.player-sprite { transform: scale(0.82); transform-origin: bottom center; }
+  .sprite.enemy-sprite  { transform: scale(0.82); transform-origin: bottom center; }
+
+  /* ── Ação: empilha vertical ── */
+  .combat-actions { flex-direction: column; gap: 6px; }
+  .action-group   { width: 100%; }
+  .group-buttons  { flex-wrap: wrap; }
+  .group-special .group-buttons { gap: 4px; }
+  .combat-actions button { font-size: 11px; padding: 7px 9px; }
+
+  /* ── Combat log: altura menor ── */
+  .combat-log { max-height: 110px; }
+
+  /* ── Feedback central ── */
+  .feedback { font-size: 12px; padding: 5px 10px; }
+  .fb-result { font-size: 14px; }
+  .fb-detail { font-size: 16px; }
+
+  /* ── Painéis laterais (sheet, log) ── */
+  .hud-panel { max-width: 100%; width: 100%; }
+
+  /* ── Modal de personagem ── */
+  .modal-box { max-width: 96vw; padding: 24px 18px; }
+  .modal-class-img { max-height: 140px; }
+  .modal-desc { font-size: 13px; }
+
+  /* ── Tipografia reduzida ── */
+  .stage-panel .panel-heading h2 { font-size: 18px; }
+  .event-description { font-size: 13px; }
+
+  /* ── Path cards ── */
+  .path-card { padding: 12px; font-size: 13px; }
+
+  /* ── Victory popup ── */
+  .victory-card { padding: 28px 20px 24px; }
+  .victory-title { font-size: 20px; }
+  .victory-icon  { font-size: 38px; }
+  .victory-text  { font-size: 13px; }
+  .victory-btn   { padding: 11px 22px; font-size: 13px; min-width: 160px; }
+}
+
+/* ── Overflow horizontal global ── */
+@media (max-width: 1280px) {
+  html, body { overflow-x: hidden; }
+  .game-shell { max-width: 100vw; overflow-x: hidden; }
+}
