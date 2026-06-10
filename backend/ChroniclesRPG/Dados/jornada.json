@@ -1,0 +1,229 @@
+{
+  "etapas": [
+    {
+      "numero": 1,
+      "nome": "Guilda Pluma de Prata",
+      "evento": {
+        "tipo": "cutscene",
+        "titulo": "O Chamado da Floresta",
+        "descricao": "Mestre da Guilda: A Floresta de Letes pediu socorro. O miasma do Bosque dos Lamentos esta rompendo o selo.\n\nAventureiro: Se as criaturas ja foram corrompidas, precisamos agir antes que chegue aos vilarejos.\n\nMestre da Guilda: A Pluma de Prata nao tem muitos nomes, mas tem coragem. Entre na floresta, derrote os monstros e encontre a raiz do mal.",
+        "cena": "guilda"
+      }
+    },
+    {
+      "numero": 2,
+      "nome": "Entrada do Bosque",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Arbusto Errante",
+        "descricao": "O primeiro inimigo se move entre as folhas. Um combate simples para testar sua arma.",
+        "inimigoId": "twig_blight",
+        "ouro": 6
+      }
+    },
+    {
+      "numero": 3,
+      "nome": "Trilha dos Uivos",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Lobo Corrompido",
+        "descricao": "Um lobo tomado pela sombra salta da trilha principal.",
+        "inimigoId": "lobo_corrompido",
+        "ouro": 9
+      }
+    },
+    {
+      "numero": 4,
+      "nome": "Acampamento Abandonado",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Esqueleto de Aventureiro",
+        "descricao": "Um antigo aventureiro se ergue com uma espada enferrujada.",
+        "inimigoId": "esqueleto_aventureiro",
+        "ouro": 12
+      }
+    },
+    {
+      "numero": 5,
+      "nome": "Cemiterio Verde",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Zumbi Putrefato",
+        "descricao": "Um corpo antigo se arrasta pela lama fria.",
+        "inimigoId": "zumbi_putrefato",
+        "concedePocao": true
+      }
+    },
+    {
+      "numero": 6,
+      "nome": "Pedra do Juramento",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Orc da Garra de Sangue",
+        "descricao": "O primeiro guerreiro real do bosque desafia seu juramento.",
+        "inimigoId": "orc_sangue",
+        "ouro": 18
+      }
+    },
+    {
+      "numero": 7,
+      "nome": "Pedreira Antiga",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Mini-Chefe: Ogro Esmagador",
+        "descricao": "O primeiro grande teste aparece entre pedras quebradas.",
+        "inimigoId": "ogro_esmagador",
+        "boss": true,
+        "cena": "pedras",
+        "ouro": 28,
+        "concedePocao": true
+      }
+    },
+    {
+      "numero": 8,
+      "nome": "Cidade Remota de Letes",
+      "evento": {
+        "tipo": "descanso",
+        "titulo": "Descanso Seguro",
+        "descricao": "Moradores acolhem a guilda por uma noite. HP, curas e slots sao restaurados.",
+        "cena": "cidade"
+      }
+    },
+    {
+      "numero": 9,
+      "nome": "Carroca do Mercador Errante",
+      "evento": {
+        "tipo": "loja",
+        "titulo": "Mercador Errante",
+        "descricao": "Uma carroca com suprimentos aparece antes da trilha escurecer.",
+        "cena": "loja"
+      }
+    },
+    {
+      "numero": 10,
+      "nome": "Clareira Cortante",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Bugbear Urso-Coruja Menor",
+        "descricao": "Um agressor de impacto tenta encerrar a jornada com um golpe pesado.",
+        "inimigoId": "bugbear_menor",
+        "ouro": 22
+      }
+    },
+    {
+      "numero": 11,
+      "nome": "Portao de Ossos",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Guardiao Morto",
+        "descricao": "Um zumbi protege o portao feito de ossos antigos.",
+        "inimigoId": "zumbi_putrefato",
+        "ouro": 14
+      }
+    },
+    {
+      "numero": 12,
+      "nome": "Trilha da Lua Baixa",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Lobo Alfa Corrompido",
+        "descricao": "Um lobo maior testa sua resistencia antes do centro da floresta.",
+        "inimigoId": "lobo_corrompido",
+        "ouro": 18
+      }
+    },
+    {
+      "numero": 13,
+      "nome": "Acampamento da Garra",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Orc Veterano",
+        "descricao": "Um orc experiente defende o acampamento inimigo.",
+        "inimigoId": "orc_sangue",
+        "ouro": 20,
+        "concedePocao": true
+      }
+    },
+    {
+      "numero": 14,
+      "nome": "Raizes do Colosso",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Mini-Chefe: Arvore Desperta Maligna",
+        "descricao": "Raizes vivas tentam prender o heroi no chao.",
+        "inimigoId": "arvore_maligna",
+        "boss": true,
+        "cena": "raizes",
+        "ouro": 35
+      }
+    },
+    {
+      "numero": 15,
+      "nome": "Santuario do Espirito Verde",
+      "evento": {
+        "tipo": "descanso",
+        "titulo": "Bencao da Floresta",
+        "descricao": "O espirito da floresta oferece um ultimo descanso antes da corrupcao profunda.",
+        "cena": "cidade"
+      }
+    },
+    {
+      "numero": 16,
+      "nome": "Muralha de Pedra",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Ogro Remanescente",
+        "descricao": "Um bruto bloqueia a passagem com uma clava coberta de miasma.",
+        "inimigoId": "ogro_esmagador",
+        "ouro": 25
+      }
+    },
+    {
+      "numero": 17,
+      "nome": "Raiz do Mal",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Arvore Guardia",
+        "descricao": "A ultima criatura vegetal protege o coracao do bosque.",
+        "inimigoId": "arvore_maligna",
+        "ouro": 25
+      }
+    },
+    {
+      "numero": 18,
+      "nome": "Altar Selado",
+      "evento": {
+        "tipo": "cutscene",
+        "titulo": "O Selo Rachado",
+        "descricao": "Espirito da Floresta: O selo rachou. Eu segurei o mal por seculos, mas minhas raizes estao cansadas.\n\nAventureiro: Entao me mostre onde lutar. Eu termino o que o selo comecou.\n\nLich Primordial: Pequena chama mortal... cada criatura que voce derrotou abriu caminho ate mim.\n\nEspirito da Floresta: Nao tema a escuridao. Ela so parece infinita antes do primeiro golpe.",
+        "cena": "lich"
+      }
+    },
+    {
+      "numero": 19,
+      "nome": "Penhasco das Garras",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Mini-Chefe: Manticora Faminta",
+        "descricao": "O desafio definitivo de mitigacao de dano antes do chefe final.",
+        "inimigoId": "manticora_faminta",
+        "boss": true,
+        "cena": "pedras",
+        "ouro": 40,
+        "concedePocao": true
+      }
+    },
+    {
+      "numero": 20,
+      "nome": "Coracao Escuro do Bosque",
+      "evento": {
+        "tipo": "combate",
+        "titulo": "Chefe Final: Lich Primordial",
+        "descricao": "O Lich perdeu suas magias completas, mas desfere golpes fisicos devastadores infundidos em miasma.",
+        "inimigoId": "lich_desperto",
+        "boss": true,
+        "cena": "lich"
+      }
+    }
+  ]
+}

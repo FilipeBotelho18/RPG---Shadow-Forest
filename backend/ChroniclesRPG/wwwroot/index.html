@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shadow Forest</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="intro-active">
+   <div id="intro-screen">
+    <div class="intro-content">
+           <img class="game-logo"
+         src="./assets/abertura.png"
+         alt="Shadow Forest">
+
+        <h2>FLORESTA DAS SOMBRAS</h2>
+
+        <p>
+            A guilda Pluma de Prata recebe um chamado urgente.<br>
+            O miasma das trevas se espalha pela floresta.<br>
+            Apenas um herói poderá deter o Lich Primordial.
+        </p>
+
+        <button id="start-adventure" type="button">NOVA AVENTURA ▶</button>
+    </div>
+</div>
+    <main class="game-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Jornada</p>
+          <h1 class="screen-heading">Campanha</h1>
+          <p id="stage">Carregando jornada...</p>
+        </div>
+        <div class="top-actions">
+          <button id="toggle-sheet" class="ghost-button" type="button">Ficha</button>
+          <button id="toggle-log" class="ghost-button" type="button">Registro</button>
+          <button id="new-game" class="ghost-button" type="button">Novo jogo</button>
+        </div>
+      </section>
+
+      <section class="status-grid" aria-label="Status do jogador">
+        <article class="status-card wide player-card">
+          <div class="portrait player-portrait" id="player-portrait" aria-hidden="true"></div>
+          <div class="player-data">
+            <div class="status-line">
+              <span id="player-name">Aventureiro</span>
+              <strong id="level">Nivel 1</strong>
+            </div>
+            <div class="meter">
+              <span id="hp-bar"></span>
+            </div>
+            <div class="status-line muted">
+              <span id="hp">HP 0/0</span>
+              <span id="xp">XP 0</span>
+            </div>
+          </div>
+        </article>
+        <article class="status-card">
+          <span><i class="stat-icon">CA</i> Armadura</span>
+          <strong id="armor">0</strong>
+        </article>
+        <article class="status-card">
+          <span><i class="stat-icon">SM</i> Smite</span>
+          <strong id="slots">0</strong>
+        </article>
+        <article class="status-card">
+          <span><i class="stat-icon">+</i> Cura</span>
+          <strong id="layhands">0</strong>
+        </article>
+        <article class="status-card">
+          <span><i class="stat-icon">P</i> Pocoes</span>
+          <strong id="potions">0</strong>
+        </article>
+        <article class="status-card">
+          <span><i class="stat-icon">$</i> Ouro</span>
+          <strong id="gold">0</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <section class="stage-panel" id="creation-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Guilda Pluma de Prata</p>
+            <h2>Escolha seu heroi</h2>
+          </div>
+          <div id="class-cards" class="class-grid"></div>
+        </section>
+
+        <section class="stage-panel" id="choice-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Jornada</p>
+            <h2>Proxima batalha</h2>
+          </div>
+          <div id="path-cards" class="path-grid"></div>
+        </section>
+
+        <section class="stage-panel hidden" id="event-panel">
+          <div class="panel-heading">
+            <p class="eyebrow" id="event-type">Evento</p>
+            <h2 id="event-title">Evento</h2>
+          </div>
+          <p id="event-description" class="event-description"></p>
+          <div id="shop-list" class="shop-list"></div>
+          <div class="event-actions">
+            <button id="rest-button" type="button">Descansar</button>
+            <button id="continue-button" type="button">Continuar</button>
+          </div>
+        </section>
+
+        <section class="stage-panel hidden" id="combat-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Combate</p>
+            <h2 id="enemy-name">Inimigo</h2>
+          </div>
+          <div class="battlefield scene-bosque" id="battlefield" aria-label="Campo de batalha">
+            <svg class="combat-bg" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="forest-sky" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="var(--forest-sky-top)" />
+                  <stop offset="58%" stop-color="var(--forest-sky-mid)" />
+                  <stop offset="100%" stop-color="var(--forest-sky-ground)" />
+                </linearGradient>
+                <radialGradient id="forest-glow" cx="50%" cy="18%" r="55%">
+                  <stop offset="0%" stop-color="var(--forest-light)" stop-opacity="0.78" />
+                  <stop offset="45%" stop-color="var(--forest-light)" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="var(--forest-light)" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="forest-mist" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0%" stop-color="var(--forest-mist)" stop-opacity="0.05" />
+                  <stop offset="50%" stop-color="var(--forest-mist)" stop-opacity="0.34" />
+                  <stop offset="100%" stop-color="var(--forest-mist)" stop-opacity="0.06" />
+                </linearGradient>
+              </defs>
+
+              <rect width="1200" height="520" fill="url(#forest-sky)" />
+              <rect width="1200" height="520" fill="url(#forest-glow)" />
+
+              <g class="bg-stars">
+                <circle cx="170" cy="44" r="2" /><circle cx="320" cy="76" r="1.6" /><circle cx="532" cy="42" r="1.8" />
+                <circle cx="768" cy="70" r="1.4" /><circle cx="940" cy="38" r="2" /><circle cx="1048" cy="92" r="1.5" />
+                <circle cx="242" cy="190" r="1.6" /><circle cx="642" cy="176" r="1.4" /><circle cx="894" cy="204" r="1.8" />
+              </g>
+
+              <g class="bg-back-trees">
+                <path d="M0 335 C115 290 242 310 354 334 C500 366 640 296 800 324 C928 344 1040 298 1200 326 L1200 520 L0 520 Z" />
+                <path d="M75 338 L75 110 M92 338 L92 96 M1040 338 L1040 86 M1060 338 L1060 116" />
+                <path d="M40 116 C84 78 140 78 190 116 M1022 114 C1060 78 1118 78 1162 116" />
+              </g>
+
+              <g class="bg-tree bg-tree-a">
+                <rect x="126" y="112" width="34" height="276" />
+                <ellipse cx="143" cy="104" rx="88" ry="112" />
+              </g>
+              <g class="bg-tree bg-tree-b">
+                <rect x="312" y="96" width="38" height="296" />
+                <ellipse cx="331" cy="86" rx="74" ry="122" />
+              </g>
+              <g class="bg-tree bg-tree-c">
+                <rect x="556" y="118" width="36" height="282" />
+                <ellipse cx="574" cy="96" rx="96" ry="116" />
+              </g>
+              <g class="bg-tree bg-tree-d">
+                <rect x="828" y="104" width="42" height="286" />
+                <ellipse cx="850" cy="88" rx="92" ry="126" />
+              </g>
+
+              <g class="bg-front-trunks">
+                <rect x="-20" y="76" width="58" height="384" />
+                <rect x="1160" y="70" width="60" height="390" />
+                <path d="M20 130 C84 120 118 146 140 202" />
+                <path d="M1180 122 C1116 120 1086 148 1064 202" />
+              </g>
+
+              <g class="bg-light-beams">
+                <path d="M650 0 L758 0 L684 420 L596 420 Z" />
+                <path d="M772 0 L846 0 L916 430 L840 430 Z" />
+              </g>
+
+              <g class="bg-ground">
+                <path d="M0 392 C180 366 302 380 452 402 C636 428 760 372 1200 398 L1200 520 L0 520 Z" />
+                <path d="M0 458 C130 436 262 448 410 468 C598 494 802 432 1200 460 L1200 520 L0 520 Z" />
+                <path d="M340 430 C458 414 594 414 720 430 C620 462 454 462 340 430 Z" />
+                <path d="M88 480 C170 460 304 462 390 486 C296 512 134 510 88 480 Z" />
+                <path d="M790 486 C880 456 1052 462 1180 492 C1050 514 866 514 790 486 Z" />
+              </g>
+
+              <g class="bg-fog">
+                <path d="M0 352 C170 330 320 350 478 354 C672 360 820 326 1200 352 L1200 382 C888 366 732 394 502 374 C294 356 164 366 0 380 Z" />
+                <path d="M0 426 C198 406 334 438 526 424 C756 406 912 418 1200 432 L1200 460 C980 444 782 438 560 448 C350 460 166 436 0 456 Z" />
+              </g>
+            </svg>
+            <div class="scene-layer sky"></div>
+            <div class="scene-layer trees"></div>
+            <div class="scene-layer path"></div>
+            <div class="scene-layer water"></div>
+            <div class="combatant player-combatant">
+              <div class="sprite player-sprite" aria-hidden="true">
+                <img id="combat-player-image" class="combat-character-image" alt="" />
+                <span class="cape"></span>
+                <span class="head"></span>
+                <span class="hair"></span>
+                <span class="torso"></span>
+                <span class="pauldron left"></span>
+                <span class="pauldron right"></span>
+                <span class="arm sword-arm"></span>
+                <span class="arm shield-arm"></span>
+                <span class="sword"></span>
+                <span class="shield"></span>
+                <span class="leg left"></span>
+                <span class="leg right"></span>
+                <span class="boot left"></span>
+                <span class="boot right"></span>
+              </div>
+              <div class="combatant-plate">
+                <strong>Sir Alden</strong>
+                <span id="battle-player-hp">HP 0/0</span>
+              </div>
+            </div>
+
+            <div id="feedback" class="feedback neutral">Pronto</div>
+
+            <div class="combatant enemy-combatant">
+              <div class="sprite enemy-sprite twig" id="enemy-sprite" aria-hidden="true"></div>
+              <div class="combatant-plate">
+                <strong id="enemy-plate-name">Inimigo</strong>
+                <span id="enemy-hp">HP 0/0</span>
+                <small id="enemy-armor">CA 0</small>
+                <div class="meter enemy-meter">
+                  <span id="enemy-hp-bar"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="combat-actions">
+            <button data-action="atacar" type="button">Atacar</button>
+            <button data-action="smite" type="button">Smite</button>
+            <button data-action="bencao" type="button">Bencao</button>
+            <button data-action="escudo_fe" type="button">Escudo da Fe</button>
+            <button data-action="trovejante" type="button">Trovejante</button>
+            <button data-action="ajuda" type="button">Ajuda</button>
+            <button data-action="restauracao" type="button">Restauracao</button>
+            <button data-action="arma_magica" type="button">Arma Magica</button>
+            <button data-action="cura" type="button">Cura</button>
+            <button data-action="pocao" type="button">Pocao</button>
+            <button data-action="rajada" type="button">Rajada</button>
+            <button data-action="raio_gelo" type="button">Raio de Gelo</button>
+            <button data-action="raio_fogo" type="button">Raio de Fogo</button>
+            <button data-action="protecao_laminas" type="button">Protecao Laminas</button>
+            <button data-action="protecao_arcana" type="button">Protecao Arcana</button>
+            <button data-action="misil" type="button">Misseis</button>
+            <button data-action="paralisar" type="button">Paralisar</button>
+            <button data-action="golpe" type="button">Golpe</button>
+            <button data-action="folego" type="button">Folego</button>
+            <button data-action="surto" type="button">Surto</button>
+            <button data-action="foco" type="button">Foco</button>
+            <button data-action="encerrar" type="button">Encerrar turno</button>
+          </div>
+        </section>
+
+        <section class="stage-panel sheet-panel hud-panel hidden" id="sheet-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Ficha</p>
+            <h2>Personagem</h2>
+            <button class="panel-close" data-close-panel="sheet" type="button">Fechar</button>
+          </div>
+          <div id="sheet" class="sheet-grid"></div>
+          <h3>Inventario</h3>
+          <ul id="inventory-list" class="inventory-list"></ul>
+        </section>
+
+        <section class="stage-panel log-panel hud-panel hidden" id="log-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Registro</p>
+            <h2>Ultimos acontecimentos</h2>
+            <button class="panel-close" data-close-panel="log" type="button">Fechar</button>
+          </div>
+          <ol id="log"></ol>
+        </section>
+
+        <section class="stage-panel final-panel hidden" id="final-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Resultado</p>
+            <h2 id="final-title">Fim da jornada</h2>
+          </div>
+          <p id="final-result"></p>
+          <div class="final-stats">
+            <article><span>Nivel final</span><strong id="final-level">0</strong></article>
+            <article><span>Inimigos derrotados</span><strong id="final-kills">0</strong></article>
+            <article><span>Ouro final</span><strong id="final-gold">0</strong></article>
+          </div>
+          <h3>Caminhos escolhidos</h3>
+          <ul id="final-paths"></ul>
+        </section>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

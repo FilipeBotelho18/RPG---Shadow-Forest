@@ -1,0 +1,102 @@
+[
+  {
+    "id": "twig_blight",
+    "nome": "Twig Blight",
+    "classeArmadura": 13,
+    "hpMaximo": 8,
+    "bonusAtaque": 3,
+    "dadoDeDano": "1d4",
+    "bonusDano": 1,
+    "xpConcedido": 45
+  },
+  {
+    "id": "lobo_corrompido",
+    "nome": "Lobo Corrompido",
+    "classeArmadura": 13,
+    "hpMaximo": 12,
+    "bonusAtaque": 4,
+    "dadoDeDano": "1d6",
+    "bonusDano": 2,
+    "xpConcedido": 65
+  },
+  {
+    "id": "esqueleto_aventureiro",
+    "nome": "Esqueleto de Aventureiro",
+    "classeArmadura": 13,
+    "hpMaximo": 15,
+    "bonusAtaque": 4,
+    "dadoDeDano": "1d6",
+    "bonusDano": 2,
+    "xpConcedido": 85
+  },
+  {
+    "id": "zumbi_putrefato",
+    "nome": "Zumbi Putrefato",
+    "classeArmadura": 8,
+    "hpMaximo": 22,
+    "bonusAtaque": 3,
+    "dadoDeDano": "1d6",
+    "bonusDano": 2,
+    "xpConcedido": 115
+  },
+  {
+    "id": "orc_sangue",
+    "nome": "Orc da Garra de Sangue",
+    "classeArmadura": 13,
+    "hpMaximo": 24,
+    "bonusAtaque": 5,
+    "dadoDeDano": "1d8",
+    "bonusDano": 2,
+    "xpConcedido": 150
+  },
+  {
+    "id": "bugbear_menor",
+    "nome": "Bugbear Urso-Coruja Menor",
+    "classeArmadura": 14,
+    "hpMaximo": 32,
+    "bonusAtaque": 5,
+    "dadoDeDano": "2d6",
+    "bonusDano": 3,
+    "xpConcedido": 210
+  },
+  {
+    "id": "ogro_esmagador",
+    "nome": "Ogro Esmagador",
+    "classeArmadura": 11,
+    "hpMaximo": 44,
+    "bonusAtaque": 6,
+    "dadoDeDano": "2d8",
+    "bonusDano": 4,
+    "xpConcedido": 420
+  },
+  {
+    "id": "arvore_maligna",
+    "nome": "Arvore Desperta Maligna",
+    "classeArmadura": 15,
+    "hpMaximo": 56,
+    "bonusAtaque": 6,
+    "dadoDeDano": "2d6",
+    "bonusDano": 4,
+    "xpConcedido": 500
+  },
+  {
+    "id": "manticora_faminta",
+    "nome": "Manticora Faminta",
+    "classeArmadura": 14,
+    "hpMaximo": 66,
+    "bonusAtaque": 7,
+    "dadoDeDano": "2d8",
+    "bonusDano": 5,
+    "xpConcedido": 680
+  },
+  {
+    "id": "lich_desperto",
+    "nome": "Lich Primordial Enfraquecido",
+    "classeArmadura": 16,
+    "hpMaximo": 84,
+    "bonusAtaque": 8,
+    "dadoDeDano": "2d10",
+    "bonusDano": 6,
+    "xpConcedido": 1250
+  }
+]
