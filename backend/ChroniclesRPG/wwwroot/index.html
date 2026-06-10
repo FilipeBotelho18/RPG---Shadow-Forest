@@ -24,58 +24,64 @@
         <button id="start-adventure" type="button">NOVA AVENTURA ▶</button>
     </div>
 </div>
-    <main class="game-shell">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Jornada</p>
-          <h1 class="screen-heading">Campanha</h1>
-          <p id="stage">Carregando jornada...</p>
-        </div>
-        <div class="top-actions">
-          <button id="toggle-sheet" class="ghost-button" type="button">Ficha</button>
-          <button id="toggle-log" class="ghost-button" type="button">Registro</button>
-          <button id="new-game" class="ghost-button" type="button">Novo jogo</button>
-        </div>
-      </section>
 
-      <section class="status-grid" aria-label="Status do jogador">
-        <article class="status-card wide player-card">
-          <div class="portrait player-portrait" id="player-portrait" aria-hidden="true"></div>
-          <div class="player-data">
-            <div class="status-line">
-              <span id="player-name">Aventureiro</span>
-              <strong id="level">Nivel 1</strong>
+<div id="welcome-screen" class="hidden">
+  <div class="welcome-content">
+    <div class="welcome-icon">🌲</div>
+    <p class="eyebrow">Guilda Pluma de Prata</p>
+    <h1>Bem-vindo,<br>Aventureiro</h1>
+    <p class="welcome-lore">
+      A grande <strong>Floresta de Letes</strong> está tomada pelo miasma maligno.<br>
+      Criaturas corrompidas vagam pelos caminhos e o Bosque dos Lamentos ameaça consumir tudo.
+      O Lich Primordial desperta nas profundezas, e apenas um herói da guilda Pluma de Prata
+      pode selar o mal antes que ele alcance os vilarejos.
+    </p>
+    <p class="welcome-call">Escolha seu herói e inicie sua aventura.</p>
+    <button id="choose-hero-button" type="button">ESCOLHER HERÓI ⚔</button>
+  </div>
+</div>
+    <main class="game-shell">
+      <!-- HUD dinâmico — stats variam por classe, preenchido pelo JS -->
+      <header class="player-hud" id="player-hud" aria-label="Status do jogador">
+
+        <!-- Identidade: portrait + nome + classe + HP -->
+        <div class="hud-identity">
+          <div class="portrait hud-portrait" id="player-portrait" aria-hidden="true"></div>
+          <div class="hud-player-info">
+            <div class="hud-name-row">
+              <span class="hud-name" id="player-name">Aventureiro</span>
+              <span class="hud-class-tag" id="hud-class-tag"></span>
             </div>
-            <div class="meter">
-              <span id="hp-bar"></span>
-            </div>
-            <div class="status-line muted">
-              <span id="hp">HP 0/0</span>
-              <span id="xp">XP 0</span>
+            <div class="hud-hp-track"><div class="hud-hp-fill" id="hp-bar"></div></div>
+            <div class="hud-sub-row">
+              <span class="hud-hp-text" id="hp">HP 0/0</span>
+              <span class="hud-level" id="level">Nivel 1</span>
+              <span class="hud-xp" id="xp">XP 0</span>
             </div>
           </div>
-        </article>
-        <article class="status-card">
-          <span><i class="stat-icon">CA</i> Armadura</span>
-          <strong id="armor">0</strong>
-        </article>
-        <article class="status-card">
-          <span><i class="stat-icon">SM</i> Smite</span>
-          <strong id="slots">0</strong>
-        </article>
-        <article class="status-card">
-          <span><i class="stat-icon">+</i> Cura</span>
-          <strong id="layhands">0</strong>
-        </article>
-        <article class="status-card">
-          <span><i class="stat-icon">P</i> Pocoes</span>
-          <strong id="potions">0</strong>
-        </article>
-        <article class="status-card">
-          <span><i class="stat-icon">$</i> Ouro</span>
-          <strong id="gold">0</strong>
-        </article>
-      </section>
+        </div>
+
+        <div class="hud-sep"></div>
+
+        <!-- Stats dinâmicos por classe -->
+        <div class="hud-stats" id="hud-stats" aria-live="polite"></div>
+
+        <div class="hud-sep"></div>
+
+        <!-- Etapa atual -->
+        <div class="hud-stage-wrap">
+          <p class="eyebrow">Jornada</p>
+          <p class="hud-stage-text" id="stage">—</p>
+        </div>
+
+        <!-- Botões -->
+        <div class="hud-actions">
+          <button id="toggle-sheet" class="ghost-button" type="button">Ficha</button>
+          <button id="toggle-log"   class="ghost-button" type="button">Registro</button>
+          <button id="new-game"     class="ghost-button" type="button">Novo jogo</button>
+        </div>
+
+      </header>
 
       <section class="content-grid">
         <section class="stage-panel" id="creation-panel">
@@ -89,7 +95,7 @@
         <section class="stage-panel" id="choice-panel">
           <div class="panel-heading">
             <p class="eyebrow">Jornada</p>
-            <h2>Proxima batalha</h2>
+            <h2>Proxima Missao</h2>
           </div>
           <div id="path-cards" class="path-grid"></div>
         </section>
@@ -231,29 +237,72 @@
               </div>
             </div>
           </div>
+          <!-- Registro de combate (últimas rolagens) -->
+          <div class="combat-log" id="combat-log">
+            <div class="combat-log-header">
+              <span class="combat-log-icon">📜</span>
+              <span>Registro de Combate</span>
+            </div>
+            <ul class="combat-log-list" id="combat-log-entries">
+              <li class="combat-log-entry entry-neutral">Aguardando ação...</li>
+            </ul>
+          </div>
+
+          <!-- Habilidades em grupos -->
           <div class="combat-actions">
-            <button data-action="atacar" type="button">Atacar</button>
-            <button data-action="smite" type="button">Smite</button>
-            <button data-action="bencao" type="button">Bencao</button>
-            <button data-action="escudo_fe" type="button">Escudo da Fe</button>
-            <button data-action="trovejante" type="button">Trovejante</button>
-            <button data-action="ajuda" type="button">Ajuda</button>
-            <button data-action="restauracao" type="button">Restauracao</button>
-            <button data-action="arma_magica" type="button">Arma Magica</button>
-            <button data-action="cura" type="button">Cura</button>
-            <button data-action="pocao" type="button">Pocao</button>
-            <button data-action="rajada" type="button">Rajada</button>
-            <button data-action="raio_gelo" type="button">Raio de Gelo</button>
-            <button data-action="raio_fogo" type="button">Raio de Fogo</button>
-            <button data-action="protecao_laminas" type="button">Protecao Laminas</button>
-            <button data-action="protecao_arcana" type="button">Protecao Arcana</button>
-            <button data-action="misil" type="button">Misseis</button>
-            <button data-action="paralisar" type="button">Paralisar</button>
-            <button data-action="golpe" type="button">Golpe</button>
-            <button data-action="folego" type="button">Folego</button>
-            <button data-action="surto" type="button">Surto</button>
-            <button data-action="foco" type="button">Foco</button>
-            <button data-action="encerrar" type="button">Encerrar turno</button>
+
+            <!-- ⚔ Básicas -->
+            <div class="action-group group-basic" id="action-group-basic">
+              <div class="group-label">
+                <span class="group-icon">⚔</span>
+                <span>Básicas</span>
+              </div>
+              <div class="group-buttons">
+                <button data-action="atacar" type="button">Ataque</button>
+                <button data-action="golpe" type="button">Golpe Preciso</button>
+                <button data-action="rajada" type="button">Rajada</button>
+              </div>
+            </div>
+
+            <!-- ✨ Especiais / Magias -->
+            <div class="action-group group-special" id="action-group-special">
+              <div class="group-label">
+                <span class="group-icon">✨</span>
+                <span>Especiais</span>
+              </div>
+              <div class="group-buttons">
+                <button data-action="smite" type="button">Smite</button>
+                <button data-action="bencao" type="button">Bênção</button>
+                <button data-action="escudo_fe" type="button">Escudo da Fé</button>
+                <button data-action="trovejante" type="button">Trovejante</button>
+                <button data-action="ajuda" type="button">Ajuda</button>
+                <button data-action="restauracao" type="button">Restauração</button>
+                <button data-action="arma_magica" type="button">Arma Mágica</button>
+                <button data-action="cura" type="button">Cura</button>
+                <button data-action="raio_gelo" type="button">Raio de Gelo</button>
+                <button data-action="raio_fogo" type="button">Raio de Fogo</button>
+                <button data-action="protecao_laminas" type="button">Prot. Lâminas</button>
+                <button data-action="protecao_arcana" type="button">Prot. Arcana</button>
+                <button data-action="misil" type="button">Mísseis Mágicos</button>
+                <button data-action="paralisar" type="button">Paralisar</button>
+                <button data-action="folego" type="button">Retomar Fôlego</button>
+                <button data-action="surto" type="button">Surto de Ação</button>
+              </div>
+            </div>
+
+            <!-- 🧪 Utilitários -->
+            <div class="action-group group-util" id="action-group-util">
+              <div class="group-label">
+                <span class="group-icon">🧪</span>
+                <span>Utilitários</span>
+              </div>
+              <div class="group-buttons">
+                <button data-action="pocao" type="button">Poção</button>
+                <button data-action="foco" type="button">Foco</button>
+                <button data-action="encerrar" type="button">Encerrar Turno</button>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -293,6 +342,32 @@
         </section>
       </section>
     </main>
+
+    <!-- Modal de confirmação de personagem -->
+    <div id="class-confirm-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="modal-class-name">
+      <div class="modal-backdrop"></div>
+      <div class="modal-box">
+        <button class="modal-close-btn" id="modal-close" type="button" aria-label="Fechar">✕</button>
+        <div class="modal-portrait-wrap">
+          <img id="modal-class-img" class="modal-class-img" src="" alt="" />
+        </div>
+        <div class="modal-body">
+          <p class="eyebrow" id="modal-class-archetype"></p>
+          <h2 id="modal-class-name"></h2>
+          <p class="modal-class-desc" id="modal-class-desc"></p>
+          <div class="modal-stats" id="modal-class-stats"></div>
+          <div class="modal-name-row">
+            <label for="modal-name-input">Nome do herói <span>(opcional)</span></label>
+            <input id="modal-name-input" type="text" maxlength="32" placeholder="" autocomplete="off" />
+          </div>
+          <div class="modal-actions">
+            <button class="modal-cancel" id="modal-cancel" type="button">Cancelar</button>
+            <button class="modal-confirm" id="modal-confirm" type="button">Iniciar aventura ▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
