@@ -8,23 +8,25 @@ O jogo acompanha aventureiros da guilda Pluma de Prata em uma campanha linear de
 
 Entre na pasta do projeto:
 
-```powershell
+```bash
 cd backend/ChroniclesRPG
 ```
 
 Inicie o servidor local:
 
-```powershell
-dotnet run --urls http://localhost:5177
+```bash
+dotnet run
 ```
 
-Abra no navegador:
+Após a inicialização, o terminal exibirá o endereço em que o jogo está disponível, como por exemplo:
 
-```
-http://localhost:5177
+```text
+Now listening on: http://localhost:5000
 ```
 
-Para parar o servidor, pressione `Ctrl + C` no terminal.
+Abra esse endereço no navegador.
+
+Para encerrar o servidor, pressione `Ctrl + C`.
 
 Se alterar HTML, CSS ou JS e a tela não atualizar, use `Ctrl + F5` para atualizar o cache.
 
